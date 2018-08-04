@@ -15,12 +15,12 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/keygen', function() {
+// Generate random 32 length key
+$router->get('/key', function () {
     echo str_random(32);
 });
 
 // Routes for Company CRUD
-
 $router->group(['prefix' => 'company'], function ($router) {
 
     // http://api.localhost/company
@@ -29,7 +29,7 @@ $router->group(['prefix' => 'company'], function ($router) {
     // http://api.localhost/company/1
     $router->get('{id}', 'CompaniesController@getCompanyById');
 
-    // http://api.localhost/company/type/{type}
+    // http://api.localhost/company/type/IT
     $router->get('/type/{type}', 'CompaniesController@getCompanyByType');
 
     // http://api.localhost/create
@@ -44,7 +44,6 @@ $router->group(['prefix' => 'company'], function ($router) {
 });
 
 // Routes for Employee CRUD
-
 $router->group(['prefix' => 'employee'], function ($router) {
 
     // http://api.localhost/employee
@@ -53,7 +52,7 @@ $router->group(['prefix' => 'employee'], function ($router) {
     // http://api.localhost/employee/1
     $router->get('{id}', 'EmployeesController@getEmployeeById');
 
-    // http://api.localhost/employee/type/{type}
+    // http://api.localhost/employee/job/programmmer
     $router->get('/job/{job}', 'EmployeesController@getEmployeeByJob');
 
     // http://api.localhost/create
