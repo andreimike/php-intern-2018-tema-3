@@ -31,7 +31,7 @@ class EmployeesController extends Controller
             $query->select('id', 'name');
         }])->get();
 
-        return json_encode($employees);
+        return response()->json($employees);
 
     }
 
@@ -44,7 +44,7 @@ class EmployeesController extends Controller
         } else {
             $employee = Employee::find($id)->with(['company' => function ($query) {
                 $query->select('id', 'name');
-            }])->get();
+            }])->find($id);
         }
         return response()->json($employee);
 
